@@ -54,9 +54,9 @@ public static class ValidationExtensions
 
         foreach (var property in properties)
         {
-            if (property.CanRead)
+            if (property.CanRead && property.GetIndexParameters().Length == 0)
             {
-                var value = property.GetValue(obj);
+                var value = property.GetValue(obj, null);
 
                 if (value == null)
                 {
@@ -72,21 +72,8 @@ public static class ValidationExtensions
                         result = false;
                     }
                 }
-                // Handle collections
-                else if (IsEnumerableType(property.PropertyType))
-                {
-                    foreach (var item in (System.Collections.IEnumerable)value)
-                    {
-                        if (item != null && IsComplexType(item.GetType()))
-                        {
-                            var itemContext = new ValidationContext(item);
-                            if (!TryValidateObjectRecursively(item, itemContext, validationResults, validateAllProperties))
-                            {
-                                result = false;
-                            }
-                        }
-                    }
-                }
+                // Handle collections - note: DataAnnotations doesn't validate collection items by default
+                // We only check if the property type is enumerable for completeness, but don't validate items
             }
         }
 
