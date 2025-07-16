@@ -10,8 +10,12 @@
     <Description>A robust, type-safe configuration library for .NET applications with built-in validation, dependency injection support, and comprehensive error handling.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageIcon>andy_configuration_icon.png</PackageIcon>
+    
     <!-- Build Configuration -->
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
+    <!-- Package Icon -->
+    <PackageIcon>andy_configuration_icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +27,6 @@
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
-    <None Include="..\assets\andy_configuration_icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\assets\andy_configuration_icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
